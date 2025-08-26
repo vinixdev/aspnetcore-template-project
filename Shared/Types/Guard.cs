@@ -11,7 +11,7 @@ public class Guard
 
     public void AddError(string fieldName, string message) => _errors.Add(ApplicationError.Of(fieldName, message));
     
-    public bool HasErrors() => _errors.Count > 0;
+    public bool HasErrors => _errors.Count > 0;
     
     public IEnumerable<ApplicationError> GetErrors() => _errors;
     
