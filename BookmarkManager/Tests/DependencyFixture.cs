@@ -1,3 +1,7 @@
+using Bookmarks.Domain.Service;
+using Bookmarks.Persistence;
+using Shared.Bookmarks.Domain.Service;
+
 namespace BookmarkManager.Tests;
 
 public class DependencyFixture: IDisposable
@@ -6,6 +10,12 @@ public class DependencyFixture: IDisposable
 
     public DependencyFixture()
     {
+        
+        _injector.Register<IBookmarkRepository>(new InMemoryBookmarkRepository());
+        
+        _injector.Register<IBookmarkService>(new BookmarkService(
+            bookmarkRepository: _injector.Resolve<IBookmarkRepository>()
+        ));
     }
     
     public T GetService<T>() where T : class

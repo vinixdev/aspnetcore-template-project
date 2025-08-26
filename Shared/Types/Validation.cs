@@ -29,6 +29,15 @@ public class Validation
         return this;
     }
     
+    public Validation IsValidUrl()
+    {
+        if (_value is string fieldValue && !Uri.TryCreate(fieldValue, UriKind.Absolute, out var uri))
+        {
+            _errorMessages.Add($"{_fieldName} is not a valid URL.");
+        }
+        return this;
+    }
+    
     public void Validate(Guard guard)
     {
         foreach (var error in _errorMessages)

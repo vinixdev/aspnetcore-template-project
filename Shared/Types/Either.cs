@@ -41,6 +41,14 @@ public class Either<TLeft, TRight>
         return this;
     }
     
+    public async Task<Either<TLeft, TRight>> OnRightAsync(
+        Func<TRight, Task> rightFunc)
+    {
+        if (!_isLeft) await rightFunc(_right);
+        
+        return this;
+    }
+    
     public static implicit operator Either<TLeft, TRight>(TLeft left) => new(left);
     public static implicit operator Either<TLeft, TRight>(TRight right) => new(right);
 }

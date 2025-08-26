@@ -8,15 +8,28 @@ public class Bookmark
 {
     public BookmarkId Id { get; private set; }
     public string Name { get; private set; }
+    public string Url { get; private set; }
+    public string Tag { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
-    public Either<IEnumerable<ApplicationError>, Bookmark> Of(CreateBookmarkDto dto)
+    public static Either<IEnumerable<ApplicationError>, Bookmark> Of(CreateBookmarkDto dto)
     {
         var guard = new Guard();
         
         Guard
             .Check(nameof(Name), dto.Name)
-            .MaxLength(3)
+            .MinLength(3)
+            .MaxLength(255)
+            .Validate(guard);
+        
+        Guard
+            .Check(nameof(Url), dto.Url)
+            .IsValidUrl()
+            .Validate(guard);
+        
+        Guard
+            .Check(nameof(Tag), dto.Tag)
+            .MinLength(3)
             .MaxLength(255)
             .Validate(guard);
         

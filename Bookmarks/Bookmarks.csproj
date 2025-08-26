@@ -8,8 +8,10 @@
 
     <ItemGroup>
       <Folder Include="Controller\" />
-      <Folder Include="Domain\Service\" />
-      <Folder Include="Persistance\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
 
 </Project>
