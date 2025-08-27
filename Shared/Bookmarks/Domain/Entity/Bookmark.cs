@@ -12,7 +12,7 @@ public class Bookmark
     public string Tag { get; private set; }
     public DateTime CreatedAt { get; private set; }
 
-    public static Either<IEnumerable<ApplicationError>, Bookmark> Of(CreateBookmarkDto dto)
+    public static Either<IEnumerable<ApplicationError>, Bookmark> Of(ModificationBookmarkDto dto, BookmarkId? id = null)
     {
         var guard = new Guard();
         
@@ -39,14 +39,14 @@ public class Bookmark
             : Create(dto);
     }
 
-    private static Bookmark Create(CreateBookmarkDto dto)
+    private static Bookmark Create(ModificationBookmarkDto dto)
     {
         return new Bookmark(dto.Name);
     }
     
-    private Bookmark(string name)
+    private Bookmark(string name, BookmarkId? id = null)
     {
-        Id = Guid.NewGuid();
+        Id = id ?? Guid.NewGuid();
         Name = name;
         CreatedAt = DateTime.UtcNow;
     }

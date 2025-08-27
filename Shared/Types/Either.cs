@@ -8,6 +8,9 @@ public class Either<TLeft, TRight>
 
     public bool IsLeft => _isLeft;
     public bool IsRight => !_isLeft;
+    
+    public TLeft Left => _left;
+    public TRight Right => _right;
 
     private Either(TLeft left)
     {
