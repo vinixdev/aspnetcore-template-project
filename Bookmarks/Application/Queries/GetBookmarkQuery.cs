@@ -1,4 +1,4 @@
-namespace Bookmarks.Application;
+namespace Bookmarks.Application.Queries;
 
 public class GetBookmarkQuery
 {

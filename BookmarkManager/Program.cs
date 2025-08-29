@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.ConfigureCors();
+builder.Services.ConfigureRepositories();
+builder.Services.ConfigureServices();
 
 //Configure database
 // ....
