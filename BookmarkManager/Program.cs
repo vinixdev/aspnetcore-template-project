@@ -6,11 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.ConfigureCors();
+builder.Services.ConfigureDatabase(builder.Configuration);
 builder.Services.ConfigureRepositories();
 builder.Services.ConfigureServices();
-
-//Configure database
-// ....
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Bookmarks.AssemblyReference).Assembly));
 
