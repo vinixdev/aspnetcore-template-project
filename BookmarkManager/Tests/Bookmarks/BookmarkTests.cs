@@ -1,7 +1,6 @@
 using Shared.Bookmarks.Domain.Service;
 using Shared.Bookmarks.Domain.Entity;
 using Shared.Bookmarks.Domain.Service.Dto;
-using Shared.Types;
 using Xunit;
 
 namespace BookmarkManager.Tests.Bookmarks;

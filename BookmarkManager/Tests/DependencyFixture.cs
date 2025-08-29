@@ -1,5 +1,5 @@
 using Bookmarks.Domain.Service;
-using Bookmarks.Persistence;
+using Bookmarks.Infrastructure;
 using Shared.Bookmarks.Domain.Service;
 
 namespace BookmarkManager.Tests;

@@ -7,6 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.ConfigureCors();
 
+//Configure database
+// ....
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Bookmarks.AssemblyReference).Assembly));
+
 var app = builder.Build();
 
 app.UseExceptionHandler(opt => { });

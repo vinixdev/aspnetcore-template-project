@@ -3,7 +3,7 @@ using Shared.Bookmarks.Domain.Service;
 using Shared.Bookmarks.Domain.ValueObject;
 using Shared.Types;
 
-namespace Bookmarks.Persistence;
+namespace Bookmarks.Infrastructure;
 
 public class InMemoryBookmarkRepository: IBookmarkRepository
 {
