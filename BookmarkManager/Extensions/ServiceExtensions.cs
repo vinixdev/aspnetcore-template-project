@@ -1,7 +1,9 @@
+using BookmarkManager.Context;
 using Bookmarks.Domain.Service;
-using Bookmarks.Infrastructure;
+using Bookmarks.Infrastructure.Repository;
 using Microsoft.AspNetCore.Cors.Infrastructure;
-using Shared.Bookmarks.Domain.Service;
+using Bookmarks.Domain.Service;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookmarkManager.Extensions;
 
@@ -29,5 +31,13 @@ public static class ServiceExtensions
     public static void ConfigureRepositories(this IServiceCollection services)
     {
         services.AddScoped<IBookmarkRepository, BookmarkRepository>();
+    }
+
+    public static void ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDbContext<RepositoryContext>(opts =>
+        {
+            opts.UseNpgsql(configuration.GetConnectionString("sqlConnection"));
+        });
     }
 }

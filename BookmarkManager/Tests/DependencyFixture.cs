@@ -1,6 +1,5 @@
 using Bookmarks.Domain.Service;
-using Bookmarks.Infrastructure;
-using Shared.Bookmarks.Domain.Service;
+using Bookmarks.Infrastructure.Repository;
 
 namespace BookmarkManager.Tests;
 

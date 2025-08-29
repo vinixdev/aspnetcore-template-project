@@ -1,7 +1,6 @@
-using Shared.Bookmarks.Domain.Entity;
-using Shared.Bookmarks.Domain.Service;
-using Shared.Bookmarks.Domain.Service.Dto;
-using Shared.Bookmarks.Domain.ValueObject;
+using Bookmarks.Domain.Entity;
+using Bookmarks.Domain.Service.Dto;
+using Bookmarks.Domain.ValueObject;
 using Shared.Types;
 
 namespace Bookmarks.Domain.Service;

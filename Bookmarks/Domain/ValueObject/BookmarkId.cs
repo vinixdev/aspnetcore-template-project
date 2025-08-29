@@ -1,4 +1,4 @@
-namespace Shared.Bookmarks.Domain.ValueObject;
+namespace Bookmarks.Domain.ValueObject;
 
 public record BookmarkId
 {

@@ -1,6 +1,6 @@
-using Shared.Bookmarks.Domain.ValueObject;
+using Bookmarks.Domain.ValueObject;
 
-namespace Shared.Bookmarks.Domain.Service.Dto;
+namespace Bookmarks.Domain.Service.Dto;
 
 public record UpdateBookmarkDto: ModificationBookmarkDto
 {

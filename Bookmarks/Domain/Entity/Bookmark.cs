@@ -1,8 +1,8 @@
-using Shared.Bookmarks.Domain.Service.Dto;
-using Shared.Bookmarks.Domain.ValueObject;
+using Bookmarks.Domain.Service.Dto;
+using Bookmarks.Domain.ValueObject;
 using Shared.Types;
 
-namespace Shared.Bookmarks.Domain.Entity;
+namespace Bookmarks.Domain.Entity;
 
 public class Bookmark
 {

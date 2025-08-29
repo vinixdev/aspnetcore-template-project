@@ -1,9 +1,9 @@
-using Shared.Bookmarks.Domain.Entity;
-using Shared.Bookmarks.Domain.Service.Dto;
-using Shared.Bookmarks.Domain.ValueObject;
+using Bookmarks.Domain.Entity;
+using Bookmarks.Domain.Service.Dto;
+using Bookmarks.Domain.ValueObject;
 using Shared.Types;
 
-namespace Shared.Bookmarks.Domain.Service;
+namespace Bookmarks.Domain.Service;
 
 public interface IBookmarkService
 {

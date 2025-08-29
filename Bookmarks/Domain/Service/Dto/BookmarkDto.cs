@@ -1,6 +1,6 @@
-using Shared.Bookmarks.Domain.Entity;
+using Bookmarks.Domain.Entity;
 
-namespace Shared.Bookmarks.Domain.Service.Dto;
+namespace Bookmarks.Domain.Service.Dto;
 
 public record BookmarkDto
 {

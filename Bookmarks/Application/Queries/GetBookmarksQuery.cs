@@ -1,5 +1,5 @@
 using MediatR;
-using Shared.Bookmarks.Domain.Service.Dto;
+using Bookmarks.Domain.Service.Dto;
 using Shared.Types;
 
 namespace Bookmarks.Application.Queries;

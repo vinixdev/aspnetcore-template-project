@@ -1,7 +1,7 @@
 using Bookmarks.Application.Queries;
 using MediatR;
-using Shared.Bookmarks.Domain.Service;
-using Shared.Bookmarks.Domain.Service.Dto;
+using Bookmarks.Domain.Service;
+using Bookmarks.Domain.Service.Dto;
 using Shared.Types;
 
 namespace Bookmarks.Application.Handlers;

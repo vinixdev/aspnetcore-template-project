@@ -1,4 +1,4 @@
-namespace Shared.Bookmarks.Domain.Service.Dto;
+namespace Bookmarks.Domain.Service.Dto;
 
 public abstract record ModificationBookmarkDto
 {
