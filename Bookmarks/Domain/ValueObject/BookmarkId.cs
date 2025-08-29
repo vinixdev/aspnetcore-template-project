@@ -16,4 +16,10 @@ public record BookmarkId
     public override string ToString() => Value.ToString("N");
     public static implicit operator Guid(BookmarkId id) => id.Value;
     public static implicit operator BookmarkId(Guid id) => new(id);
+
+    public static BookmarkId From(string id)
+    {
+       var guid = new Guid(id); 
+       return new BookmarkId(guid);
+    }
 }

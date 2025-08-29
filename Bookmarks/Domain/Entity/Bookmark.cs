@@ -1,5 +1,6 @@
 using Bookmarks.Domain.Service.Dto;
 using Bookmarks.Domain.ValueObject;
+using Bookmarks.Infrastructure.Set;
 using Shared.Types;
 
 namespace Bookmarks.Domain.Entity;
@@ -41,14 +42,26 @@ public class Bookmark
 
     private static Bookmark Create(ModificationBookmarkDto dto)
     {
-        return new Bookmark(dto.Name);
+        return new Bookmark(dto.Name, dto.Tag, dto.Url);
     }
     
-    private Bookmark(string name, BookmarkId? id = null)
+    private Bookmark(string name, string tag, string url, BookmarkId? id = null)
     {
         Id = id ?? Guid.NewGuid();
         Name = name;
         CreatedAt = DateTime.UtcNow;
+        Tag = tag;
+        Url = url;
     }
-    
+
+    private Bookmark(string id, string name, string tag, string url, DateTime createdAt): this(name, tag, url)
+    {
+        Id = BookmarkId.From(id);
+        CreatedAt = createdAt;
+    }
+
+    public static Bookmark From(BookmarkSet bookmarkSet)
+    {
+        return new Bookmark(bookmarkSet.Id, bookmarkSet.Name, bookmarkSet.Tag, bookmarkSet.Url, bookmarkSet.CreatedAt);
+    }
 }
