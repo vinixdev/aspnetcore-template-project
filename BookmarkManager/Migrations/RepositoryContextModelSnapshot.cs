@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BookmarkManager.Migrations
 {
-    [DbContext(typeof(RepositoryContext))]
+    [DbContext(typeof(Context.RepositoryContext))]
     partial class RepositoryContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

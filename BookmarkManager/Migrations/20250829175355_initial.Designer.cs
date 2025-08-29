@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BookmarkManager.Migrations
 {
-    [DbContext(typeof(RepositoryContext))]
+    [DbContext(typeof(Context.RepositoryContext))]
     [Migration("20250829175355_initial")]
     partial class initial
     {

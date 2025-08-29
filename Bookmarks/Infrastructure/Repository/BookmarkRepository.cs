@@ -1,33 +1,61 @@
 using Bookmarks.Domain.Entity;
 using Bookmarks.Domain.Service;
 using Bookmarks.Domain.ValueObject;
+using Bookmarks.Infrastructure.Set;
+using Microsoft.EntityFrameworkCore;
+using Shared.Repository;
 
 namespace Bookmarks.Infrastructure.Repository;
 
 public class BookmarkRepository: IBookmarkRepository
 {
-    public Task InsertAsync(Bookmark bookmark)
+    private readonly IRepositoryManager<BookmarkSet> _repositoryManager;
+
+    public BookmarkRepository(IRepositoryManager<BookmarkSet> repositoryManager)
     {
-        throw new NotImplementedException();
+        _repositoryManager = repositoryManager;
+    }
+    
+    public async Task InsertAsync(Bookmark bookmark)
+    {
+        var bookmarkSet = BookmarkSet.From(bookmark);
+        
+        await _repositoryManager.Set.AddAsync(bookmarkSet);
+        
+        await _repositoryManager.SaveChangesAsync();
     }
 
-    public Task<IEnumerable<Bookmark>> FindAllAsync()
+    public async Task<IEnumerable<Bookmark>> FindAllAsync()
     {
-        throw new NotImplementedException();
+        var bookmarksRows = await _repositoryManager.Set.AsNoTracking().ToListAsync();
+        
+        var bookmarks = bookmarksRows.Select(b => b.To());
+        
+        return bookmarks;
     }
 
-    public Task<Bookmark?> FindByIdAsync(BookmarkId bookmarkId)
+    public async Task<Bookmark?> FindByIdAsync(BookmarkId bookmarkId)
     {
-        throw new NotImplementedException();
+        var bookmarkSet = await _repositoryManager.Set.AsNoTracking().FirstOrDefaultAsync(b => b.Id == bookmarkId.ToString());
+
+        return bookmarkSet?.To();
     }
 
-    public Task ReplaceAsync(Bookmark bookmark)
+    public async Task ReplaceAsync(Bookmark bookmark)
     {
-        throw new NotImplementedException();
+        var bookmarkSet = BookmarkSet.From(bookmark);
+
+        _repositoryManager.Set.Update(bookmarkSet);
+
+        await _repositoryManager.SaveChangesAsync();
     }
 
-    public Task DeleteAsync(Bookmark bookmark)
+    public async Task DeleteAsync(Bookmark bookmark)
     {
-        throw new NotImplementedException();
+        await _repositoryManager.Set
+            .Where(b => b.Id == bookmark.Id.ToString())
+            .ExecuteDeleteAsync();
+        
+        await _repositoryManager.SaveChangesAsync();
     }
 }

@@ -1,5 +1,6 @@
 using Bookmarks.Infrastructure.Set;
 using Microsoft.EntityFrameworkCore;
+using Shared.Repository;
 
 namespace BookmarkManager.Context;
 
