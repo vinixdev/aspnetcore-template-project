@@ -12,6 +12,13 @@ builder.Services.ConfigureCors();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Bookmarks.AssemblyReference).Assembly));
 
+builder.Services.AddControllers(config =>
+{
+    config.RespectBrowserAcceptHeader = true;
+    config.ReturnHttpNotAcceptable = true;   
+})
+.AddApplicationPart(typeof(Bookmarks.AssemblyReference).Assembly);
+
 var app = builder.Build();
 
 app.UseExceptionHandler(opt => { });
@@ -30,6 +37,5 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 app.UseCors("CorsPolicy");
 
 app.MapControllers();
-
 
 app.Run();
