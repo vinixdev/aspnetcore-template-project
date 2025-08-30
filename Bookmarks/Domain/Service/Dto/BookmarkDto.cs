@@ -8,7 +8,7 @@ public record BookmarkDto
     public required string Name { get; set; }
     public required string Url { get; set; }
     public required string Tag { get; set; }
-    public required DateTime CreatedAt { get; set; }
+    public required string CreatedOnUtc { get; set; }
 
     public static BookmarkDto From(Bookmark bookmark) => new()
     {
@@ -16,6 +16,6 @@ public record BookmarkDto
         Name = bookmark.Name,
         Url = bookmark.Url,
         Tag = bookmark.Tag,
-        CreatedAt = bookmark.CreatedAt,
+        CreatedOnUtc = bookmark.CreatedAt.ToString("yyyy MMMM dd HH:mm:ss"),
     };
 }

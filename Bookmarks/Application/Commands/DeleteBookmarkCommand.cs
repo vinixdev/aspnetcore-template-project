@@ -1,6 +1,5 @@
+using MediatR;
+
 namespace Bookmarks.Application.Commands;
 
-public class DeleteBookmarkCommand
-{
-    
-}
+public sealed record DeleteBookmarkCommand(Guid BookmarkId): IRequest;

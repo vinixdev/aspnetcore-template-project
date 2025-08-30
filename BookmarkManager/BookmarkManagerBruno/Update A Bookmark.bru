@@ -1,0 +1,23 @@
+meta {
+  name: Update A Bookmark
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://localhost:5001/api/bookmarks/5729d902520a4f70b148b72ac058bdf0
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "update another bookmark",
+    "url": "https://google.com",
+    "tag": "test"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

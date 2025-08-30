@@ -37,12 +37,12 @@ public class Bookmark
         
         return guard.HasErrors
             ? guard.GetErrors().ToList()
-            : Create(dto);
+            : Create(dto, id);
     }
 
-    private static Bookmark Create(ModificationBookmarkDto dto)
+    private static Bookmark Create(ModificationBookmarkDto dto, BookmarkId? id = null)
     {
-        return new Bookmark(dto.Name, dto.Tag, dto.Url);
+        return new Bookmark(dto.Name, dto.Tag, dto.Url, id);
     }
     
     private Bookmark(string name, string tag, string url, BookmarkId? id = null)

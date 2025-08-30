@@ -1,0 +1,15 @@
+meta {
+  name: Get All Bookmarks
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://localhost:5001/api/bookmarks
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

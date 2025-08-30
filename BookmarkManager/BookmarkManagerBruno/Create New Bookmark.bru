@@ -1,0 +1,23 @@
+meta {
+  name: Create New Bookmark
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://localhost:5001/api/bookmarks
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "another bookmark",
+    "url": "https://example2.com",
+    "tag": "test2"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

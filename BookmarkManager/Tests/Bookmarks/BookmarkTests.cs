@@ -94,7 +94,6 @@ public class BookmarkTests
 
         var dto = new UpdateBookmarkDto()
         {
-            Id = bookmark.Id,
             Name = "updated bookmark",
             Url = "https://www.updated.com",
             Tag = "something new",

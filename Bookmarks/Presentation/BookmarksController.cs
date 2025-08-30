@@ -3,7 +3,6 @@ using Bookmarks.Application.Queries;
 using Bookmarks.Domain.Service.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Shared.Types;
 
 namespace Bookmarks.Presentation;
@@ -24,8 +23,8 @@ public class BookmarksController: ControllerBase
       return this.ToActionResult(result);
    }
 
-   [HttpGet("{bookmarkId}", Name = "GetBookmarkById")]
-   public async Task<IActionResult> GetBookmark(string bookmarkId)
+   [HttpGet("{bookmarkId:guid}", Name = "GetBookmarkById")]
+   public async Task<IActionResult> GetBookmark(Guid bookmarkId)
    {
       var result = await _sender.Send(new GetBookmarkQuery(bookmarkId));
       
@@ -37,6 +36,22 @@ public class BookmarksController: ControllerBase
    {
      var result = await _sender.Send(new CreateBookmarkCommand(dto));
      
-     return this.ToActionResult(result, rightMapper: (b) => CreatedAtRoute("GetBookmarkById", new { id = b.Id }, b));
+     return this.ToActionResult(result, rightMapper: (b) => CreatedAtRoute("GetBookmarkById", new { bookmarkId = b.Id }, b));
+   }
+
+   [HttpPut("{bookmarkId:guid}")]
+   public async Task<IActionResult> UpdateBookmark(Guid bookmarkId, [FromBody] UpdateBookmarkDto dto)
+   { 
+      var result = await _sender.Send(new UpdateBookmarkCommand(bookmarkId, dto));
+      
+      return this.ToActionResult(result, rightMapper: (_) => NoContent());
+   }
+
+   [HttpDelete("{bookmarkId:guid}")]
+   public async Task<IActionResult> DeleteBookmark(Guid bookmarkId)
+   {
+      await _sender.Send(new DeleteBookmarkCommand(bookmarkId));
+
+      return NoContent();
    }
 }

@@ -4,4 +4,4 @@ using Shared.Types;
 
 namespace Bookmarks.Application.Queries;
 
-public sealed record GetBookmarkQuery(string BookmarkId): IRequest<Either<ApplicationError, BookmarkDto>>;
+public sealed record GetBookmarkQuery(Guid BookmarkId): IRequest<Either<ApplicationError, BookmarkDto>>;
