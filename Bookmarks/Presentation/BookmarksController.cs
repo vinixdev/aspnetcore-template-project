@@ -1,3 +1,4 @@
+using Bookmarks.Application.Commands;
 using Bookmarks.Application.Queries;
 using Bookmarks.Domain.Service.Dto;
 using MediatR;
@@ -23,7 +24,7 @@ public class BookmarksController: ControllerBase
       return this.ToActionResult(result);
    }
 
-   [HttpGet("{bookmarkId}")]
+   [HttpGet("{bookmarkId}", Name = "GetBookmarkById")]
    public async Task<IActionResult> GetBookmark(string bookmarkId)
    {
       var result = await _sender.Send(new GetBookmarkQuery(bookmarkId));
@@ -34,6 +35,8 @@ public class BookmarksController: ControllerBase
    [HttpPost]
    public async Task<IActionResult> CreateBookmark([FromBody] CreateBookmarkDto dto)
    {
-      throw new NotImplementedException();
+     var result = await _sender.Send(new CreateBookmarkCommand(dto));
+     
+     return this.ToActionResult(result, rightMapper: (b) => CreatedAtRoute("GetBookmarkById", new { id = b.Id }, b));
    }
 }
