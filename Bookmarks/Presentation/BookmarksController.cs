@@ -22,4 +22,18 @@ public class BookmarksController: ControllerBase
 
       return this.ToActionResult(result);
    }
+
+   [HttpGet("{bookmarkId}")]
+   public async Task<IActionResult> GetBookmark(string bookmarkId)
+   {
+      var result = await _sender.Send(new GetBookmarkQuery(bookmarkId));
+      
+      return this.ToActionResult(result);
+   }
+
+   [HttpPost]
+   public async Task<IActionResult> CreateBookmark([FromBody] CreateBookmarkDto dto)
+   {
+      throw new NotImplementedException();
+   }
 }
